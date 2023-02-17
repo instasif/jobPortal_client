@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const handleSignup = (data) => {
+    console.log(data);
+  };
   return (
     <section className="relative flex flex-wrap lg:h-screen lg:items-center">
       <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
@@ -14,7 +23,11 @@ const Login = () => {
           </p>
         </div>
 
-        <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
+        <form
+          action=""
+          className="mx-auto mt-8 mb-0 max-w-md space-y-4"
+          onSubmit={handleSubmit(handleSignup)}
+        >
           <div>
             <label for="email" className="sr-only">
               Email
@@ -25,7 +38,15 @@ const Login = () => {
                 type="email"
                 className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 placeholder="Enter email"
+                {...register("email", {
+                  required: "Email is required",
+                })}
               />
+              {errors?.email && (
+                <p className="text-sm text-red-600" role="alert">
+                  {errors?.email?.message}
+                </p>
+              )}
 
               <span className="absolute inset-y-0 right-4 inline-flex items-center">
                 <svg
@@ -55,30 +76,19 @@ const Login = () => {
                 type="password"
                 className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                 placeholder="Enter password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters or longer",
+                  },
+                })}
               />
-
-              <span className="absolute inset-y-0 right-4 inline-flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-              </span>
+              {errors?.password && (
+                <p className="text-sm text-red-600" role="alert">
+                  {errors?.password?.message}
+                </p>
+              )}
             </div>
           </div>
 
@@ -90,12 +100,54 @@ const Login = () => {
               </Link>
             </p>
 
-            <button
+            <input
               type="submit"
+              value="Login"
               className="ml-3 inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+            />
+          </div>
+
+          <div className="divide-y divide-dashed text-xl text-center">OR</div>
+          <div className="flex justify-center gap-3">
+            <Link
+              class="inline-flex items-center rounded border-2 border-[#DB4437] bg-[#DB4437] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#DB4437] focus:outline-none focus:ring active:opacity-75 gap-3"
+              target="_blank"
+              rel="noreferrer"
             >
-              Sign in
-            </button>
+              Google video:4
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-brand-google"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M17.788 5.108a9 9 0 1 0 3.212 6.892h-8"></path>
+              </svg>
+            </Link>
+
+            <Link
+              class="inline-flex items-center rounded border-2 border-[#3b5998] bg-[#3b5998] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#3b5998] focus:outline-none focus:ring active:opacity-75"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Facebook
+              <svg
+                class="ml-2 h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" />
+              </svg>
+            </Link>
           </div>
         </form>
       </div>
