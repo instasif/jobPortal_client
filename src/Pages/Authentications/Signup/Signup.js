@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 const Signup = () => {
-  const [data, setData] = useState("");
-  console.log(data);
   const { register, handleSubmit } = useForm();
+  const handleLogin = (data) => {
+    console.log(data);
+  };
   return (
     <section className="relative flex flex-wrap lg:h-screen lg:items-center">
       <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
@@ -22,7 +22,7 @@ const Signup = () => {
         <form
           action=""
           className="mx-auto mt-8 mb-0 max-w-md space-y-4"
-          onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}
+          onSubmit={handleSubmit(handleLogin)}
         >
           <div>
             <label for="name" className="sr-only">

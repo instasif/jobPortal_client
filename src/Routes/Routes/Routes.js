@@ -4,7 +4,6 @@ import Login from "../../Pages/Authentications/Login/Login";
 import Signup from "../../Pages/Authentications/Signup/Signup";
 import DisplayError from "../../Pages/DisplayError/DisplayError";
 import Home from '../../Pages/Home/Home/Home';
-import Tform from '../../Pages/Authentications/Signup/Tform';
 
 export const router = createBrowserRouter([
     {
@@ -24,10 +23,6 @@ export const router = createBrowserRouter([
                 path: '/register',
                 element: <Signup/>
             },
-            {
-                path: '/tform',
-                element: <Tform/>
-            }
         ]
     }
 ])
