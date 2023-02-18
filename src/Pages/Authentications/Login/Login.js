@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const Login = () => {
   const {
@@ -8,8 +9,24 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { signIn } = useContext(AuthContext);
+  const [logInErr, setLogInErr] = useState('');
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/';
+
   const handleSignup = (data) => {
-    console.log(data);
+    setLogInErr('');
+    signIn(data.email, data.password).then((result) => {
+      const user = result;
+      console.log(user);
+      navigate(from, {replace: true});
+    })
+    .catch(err => {
+      console.error(err.message);
+      setLogInErr(err.message);
+    });
   };
   return (
     <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -82,6 +99,11 @@ const Login = () => {
                     value: 6,
                     message: "Password must be at least 6 characters or longer",
                   },
+                  pattern: {
+                    value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                    message:
+                      "Password must be have a uppercase, number and a special character",
+                  },
                 })}
               />
               {errors?.password && (
@@ -89,6 +111,10 @@ const Login = () => {
                   {errors?.password?.message}
                 </p>
               )}
+            </div>
+
+            <div>
+              {logInErr && <p className="text-sm text-red-600">{logInErr}</p>}
             </div>
           </div>
 
@@ -107,17 +133,19 @@ const Login = () => {
             />
           </div>
 
-          <div className="divide-y divide-dashed text-xl text-center">OR</div>
+          <div className="divide-y divide-dashed text-xl text-center">
+            <p>OR</p>
+          </div>
           <div className="flex justify-center gap-3">
             <Link
-              class="inline-flex items-center rounded border-2 border-[#DB4437] bg-[#DB4437] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#DB4437] focus:outline-none focus:ring active:opacity-75 gap-3"
+              className="inline-flex items-center rounded border-2 border-[#DB4437] bg-[#DB4437] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#DB4437] focus:outline-none focus:ring active:opacity-75 gap-3"
               target="_blank"
               rel="noreferrer"
             >
-              Google video:4
+              Google
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-brand-google"
+                className="icon icon-tabler icon-tabler-brand-google"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -133,13 +161,13 @@ const Login = () => {
             </Link>
 
             <Link
-              class="inline-flex items-center rounded border-2 border-[#3b5998] bg-[#3b5998] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#3b5998] focus:outline-none focus:ring active:opacity-75"
+              className="inline-flex items-center rounded border-2 border-[#3b5998] bg-[#3b5998] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#3b5998] focus:outline-none focus:ring active:opacity-75"
               target="_blank"
               rel="noreferrer"
             >
               Facebook
               <svg
-                class="ml-2 h-5 w-5"
+                className="ml-2 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"

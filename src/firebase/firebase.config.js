@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.envREACT_APP_apiKey,
-  authDomain: process.envREACT_APP_authDomain,
-  projectId: process.envREACT_APP_projectId,
-  storageBucket: process.envREACT_APP_storageBucket,
-  messagingSenderId: process.envREACT_APP_messagingSenderId,
-  appId: process.envREACT_APP_appId,
+  apiKey: "AIzaSyCZSjEXAEZyBIZsYGf6cAyeuhcfJvNUDQ4",
+  authDomain: "jobportal-98679.firebaseapp.com",
+  projectId: "jobportal-98679",
+  storageBucket: "jobportal-98679.appspot.com",
+  messagingSenderId: "73762055743",
+  appId: "1:73762055743:web:c0419d41e73b7fb760fa8a",
 };
 
 // Initialize Firebase

@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Contexts/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Signup = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors } 
- } = useForm();
+    formState: { errors },
+  } = useForm();
+  const { createUser, updateUser } = useContext(AuthContext);
+  const {errMsg, setErrMsg} = useState('');
   const handleLogin = (data) => {
     console.log(data);
+    createUser(data.email, data.password)
+    .then(result => {
+      const user = result;
+      console.log(user);
+      toast.success('Successfully Sign up!!')
+      const userInfo = {
+        displayName: data.name
+      };
+      updateUser(userInfo)
+      .then((res) =>console.log(res))
+      .catch(err => {
+        console.error(err);
+        });
+    })
+    .catch(err => {
+      console.error(err);
+      setErrMsg(err.message);
+    });
   };
   return (
     <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -47,23 +69,6 @@ const Signup = () => {
                   {errors?.name?.message}
                 </p>
               )}
-
-              <span className="absolute inset-y-0 right-4 inline-flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                  />
-                </svg>
-              </span>
             </div>
           </div>
 
@@ -117,7 +122,15 @@ const Signup = () => {
                 placeholder="Enter password"
                 {...register("password", {
                   required: "Password is required",
-                  minLength: {value: 6, message: 'Password must be at least 6 characters or longer'}
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters or longer",
+                  },
+                  pattern: {
+                    value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                    message:
+                      "Password must be have a uppercase, number and a special character",
+                  },
                 })}
               />
               {errors?.password && (
@@ -126,6 +139,9 @@ const Signup = () => {
                 </p>
               )}
             </div>
+          </div>
+          <div>
+            {errMsg && <p className="text-sm text-red-600">{errMsg}</p>}
           </div>
 
           <div className="flex items-center justify-between">
@@ -143,17 +159,19 @@ const Signup = () => {
             />
           </div>
 
-          <div className="divider divide-neutral-900 text-xl text-center">OR</div>
+          <div className="divider divide-neutral-900 text-xl text-center">
+            OR
+          </div>
           <div className="flex justify-center gap-3">
             <Link
-              class="inline-flex items-center rounded border-2 border-[#DB4437] bg-[#DB4437] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#DB4437] focus:outline-none focus:ring active:opacity-75 gap-3"
+              className="inline-flex items-center rounded border-2 border-[#DB4437] bg-[#DB4437] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#DB4437] focus:outline-none focus:ring active:opacity-75 gap-3"
               target="_blank"
               rel="noreferrer"
             >
               Google
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-brand-google"
+                className="icon icon-tabler icon-tabler-brand-google"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -169,13 +187,13 @@ const Signup = () => {
             </Link>
 
             <Link
-              class="inline-flex items-center rounded border-2 border-[#3b5998] bg-[#3b5998] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#3b5998] focus:outline-none focus:ring active:opacity-75"
+              className="inline-flex items-center rounded border-2 border-[#3b5998] bg-[#3b5998] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-transparent hover:text-[#3b5998] focus:outline-none focus:ring active:opacity-75"
               target="_blank"
               rel="noreferrer"
             >
               Facebook
               <svg
-                class="ml-2 h-5 w-5"
+                className="ml-2 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"

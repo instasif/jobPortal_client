@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AuthContext);
+  console.log(user);
+  const handleLogout = () =>{
+    logOut()
+    .then(res => {
+      console.log(res);
+
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  }
   return (
     <header aria-label="Site Header" className="bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -84,23 +97,35 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="sm:flex sm:gap-4">
-              <Link
-                className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500"
-                to="/login"
-              >
-                Login
-              </Link>
-
-              <div className="hidden sm:flex">
+            {user?.uid ? (
+              <div className="sm:flex sm:gap-4">
                 <Link
-                  className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
-                  to="/register"
+                  className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500"
+
+                  onClick={handleLogout}
                 >
-                  Register
+                  Sign out
                 </Link>
               </div>
-            </div>
+            ) : (
+              <div className="sm:flex sm:gap-4">
+                <Link
+                  className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500"
+                  to="/login"
+                >
+                  Login
+                </Link>
+
+                <div className="hidden sm:flex">
+                  <Link
+                    className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
+                    to="/register"
+                  >
+                    Register
+                  </Link>
+                </div>
+              </div>
+            )}
 
             <div className="block md:hidden">
               <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
