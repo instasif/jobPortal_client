@@ -24,12 +24,14 @@ const Freshers = () => {
 
       <div className="mt-4 gap-4">
         <h2 className="text-xl font-bold tracking-tight">Freshers Jobs:</h2>
-        {freshers.map((fresher) => (
-          <Fresher id={fresher.id} fresher={fresher} />
-        ))}
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3 md:gird-cols-2">
+          {freshers.map((fresher) => (
+            <Fresher id={fresher.id} fresher={fresher} />
+          ))}
+        </div>
       </div>
 
-      <div className="flex justify-end"> 
+      <div className="flex justify-center">
         <Link
           class="inline-block rounded-full bg-teal-600 hover:bg-teal-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
           to="/s"

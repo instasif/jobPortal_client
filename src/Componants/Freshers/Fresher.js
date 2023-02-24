@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { FaStarHalfAlt, FaStar } from "react-icons/fa";
 
 const Fresher = ({ fresher }) => {
-  console.log(fresher);
   const { id, jobTitle, JobDetails, address, reviews, Schedule, company, img } = fresher;
   return (
     <div>
@@ -83,7 +82,7 @@ const Fresher = ({ fresher }) => {
             </div>
 
             <strong className="inline-block rounded border border-indigo-600 bg-indigo-600 px-7 py-2 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 hover:underline justify-end">
-              Apply now!
+              <Link to="/apply">Apply now!</Link>
             </strong>
           </div>
         </div>
