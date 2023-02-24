@@ -7,7 +7,8 @@ const App = () => {
   return (
     <div className="max-w-[1440px] mx-auto">
       <RouterProvider router={router}></RouterProvider>
-      <Toaster/>
+      <Toaster />
+      {/* https://www.indeed.com/jobs?q=software+developer&l=New+York%2C+NY&from=searchOnHP&vjk=ddadd32949f80f48 */}
     </div>
   );
 };
