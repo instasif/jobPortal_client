@@ -10,9 +10,10 @@ const Hero = () => {
           </h2>
 
           <p className="hidden max-w-md text-white/90 md:mt-6 md:block md:text-lg md:leading-relaxed">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
-            officia corporis quasi doloribus iure architecto quae voluptatum
-            beatae excepturi dolores.
+            Find your dream job today with our job searching website! Our
+            platform connects job seekers with endless opportunities across
+            various industries and locations. With a powerful job search engine,
+            personalized job recommendations, and user-friendly interface.
           </p>
 
           <div className="mt-4 sm:mt-8">

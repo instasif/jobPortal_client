@@ -1,23 +1,24 @@
 import React from 'react';
 
-const Review = () => {
+const Review = ({data}) => {
+  console.log(data);
+  const {name, img, profession, review} = data;
     return (
       <div>
         <div>
           <img
             alt="Woman"
-            src="https://images.unsplash.com/photo-1599566219227-2efe0c9b7f5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+            src={img}
             className="mx-auto h-24 w-24 rounded-full object-cover shadow-xl"
           />
 
           <blockquote className="-mt-6 flex flex-col justify-between rounded-lg p-12 text-center shadow-xl">
-            <p className="text-lg font-bold text-gray-700">Sophie Lennon</p>
+            <p className="text-lg font-bold text-gray-700">{name}</p>
             <p className="mt-1 text-xs font-medium text-gray-500">
-              Digital Marketing at Studio
+              {profession}
             </p>
             <p className="mt-4 text-sm text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-              voluptatem alias ut provident sapiente repellendus.
+              {review}
             </p>
 
             <div className="mt-8 flex justify-center gap-0.5 text-green-500">

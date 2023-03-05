@@ -1,11 +1,15 @@
 import React from "react";
 
 const Footer = () => {
+  /*
+    nav email css
+    border-gray-100 dark:border-gray-800  lg:border-b-0 lg:border-l border-b
+  */
   return (
     <footer aria-label="Site Footer" className="bg-white dark:bg-gray-900">
       <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2">
-          <div className="py-8 border-b border-gray-100 dark:border-gray-800 lg:order-last lg:border-b-0 lg:border-l lg:py-16 lg:pl-16">
+          <div className="py-8 lg:py-16 lg:pl-16 lg:mx-auto lg:order-last">
             <div className="block text-teal-600 dark:text-teal-300 lg:hidden">
               <svg
                 className="h-8"
@@ -56,7 +60,7 @@ const Footer = () => {
               </svg>
             </div>
 
-            <div className="mt-8 space-y-4 lg:mt-0">
+            {/* <div className="mt-8 space-y-4 lg:mt-0">
               <span className="hidden w-10 h-1 bg-teal-500 rounded lg:block"></span>
 
               <div>
@@ -91,7 +95,7 @@ const Footer = () => {
                   </button>
                 </div>
               </form>
-            </div>
+            </div> */}
           </div>
 
           <div className="py-8 lg:py-16 lg:pr-16">

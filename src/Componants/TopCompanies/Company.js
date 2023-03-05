@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Company = ({company}) => {
     const {name, details, img} = company;
@@ -18,8 +19,8 @@ const Company = ({company}) => {
           {details}
         </p>
 
-        <a
-          href="/"
+        <Link
+          to='/'
           class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
         >
           Find out more
@@ -29,7 +30,7 @@ const Company = ({company}) => {
           >
             &rarr;
           </span>
-        </a>
+        </Link>
       </article>
     );
 };
