@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   /*
-    nav email css
+    nav email border css class
     border-gray-100 dark:border-gray-800  lg:border-b-0 lg:border-l border-b
   */
   return (

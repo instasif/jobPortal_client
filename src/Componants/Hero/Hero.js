@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <section className="overflow-hidden bg-[url(https://previews.123rf.com/images/baranq/baranq1603/baranq160300733/53954708-recruitment-three-corporate-people-interview-young-man.jpg)] bg-cover bg-center bg-no-repeat">
+    <section className="overflow-hidden bg-[url(https://imageio.forbes.com/specials-images/imageserve/5fce71245c7f26c56e89bbd5/0x0.jpg?format=jpg&width=1200)] bg-cover bg-center bg-no-repeat">
       <div className="bg-black/25 p-8 md:p-12 lg:px-16 lg:py-24">
         <div className="max-w-lg text-center sm:text-left">
           <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-5xl">
